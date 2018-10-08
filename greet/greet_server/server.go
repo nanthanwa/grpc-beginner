@@ -52,6 +52,7 @@ func (*server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
 		}
 		if err != nil {
 			log.Fatalf("Error while reading client stream: %v", err)
+			return err
 		}
 
 		firstName := req.GetGreeting().FirstName
