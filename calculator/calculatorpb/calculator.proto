@@ -29,11 +29,21 @@ message ComputeAverageResponse {
     double avg_result = 1;
 }
 
+message FindMaximumRequest {
+    int32 number = 1;
+}
+
+message FindMaximumResponse {
+    int32 maximum = 1;
+}
+
 service CalculatorService {
     // Unary
     rpc Sum(SumRequest) returns (SumResponse) {};
-
+    // Server Stream
     rpc PrimeNumberDecomposition(PrimeNumberDecompositionRequest) returns (stream PrimeNumberDecompositionResponse) {};
-
+    // Client Stream
     rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse) {};
+    // BiDi
+    rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
 }
