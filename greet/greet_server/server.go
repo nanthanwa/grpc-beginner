@@ -70,7 +70,7 @@ func (*server) GreetEveryone(stream greetpb.GreetService_GreetEveryoneServer) er
 		}
 		if err != nil {
 			log.Fatalf("Error while reading client stream: %v", err)
-			return err // must return because this is a big error
+			return err
 		}
 		firstName := req.GetGreeting().FirstName
 		result := "Hello " + firstName + "! "
