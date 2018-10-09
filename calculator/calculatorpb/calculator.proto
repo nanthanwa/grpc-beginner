@@ -37,6 +37,14 @@ message FindMaximumResponse {
     int32 maximum = 1;
 }
 
+message SquareRootRequest {
+    int32 number = 1;
+}
+
+message SquareRootResponse {
+    double number_root = 1;
+}
+
 service CalculatorService {
     // Unary
     rpc Sum(SumRequest) returns (SumResponse) {};
@@ -46,4 +54,9 @@ service CalculatorService {
     rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse) {};
     // BiDi
     rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+    
+    // Error handling
+    // This RPC will throw an exception if the sent number is negative
+    // The error being sent is of thpe INVALID_ARGUMENT
+    rpc SquareRoot(SquareRootRequest) returns (SquareRootResponse) {};
 }
